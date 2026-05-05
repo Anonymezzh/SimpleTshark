@@ -1,0 +1,12 @@
+﻿################################################################################
+# 此 .gitignore 文件已由 Microsoft(R) Visual Studio 自动创建。
+################################################################################
+
+tshark_server/x64/Release
+.vs
+x64
+tshark_server_helper/x64/
+cmake-build-debug
+cmake-build-release
+.idea
+.DS_Store

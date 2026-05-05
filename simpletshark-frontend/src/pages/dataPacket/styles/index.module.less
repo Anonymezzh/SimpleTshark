@@ -1,0 +1,32 @@
+.resizable-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* 占满整个视口高度 */
+}
+
+.top-pane, .bottom-pane {
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.top-pane {
+  background-color: rgba(var(--glass-white-rgb), 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: auto; /* 确保内容超出时可以滚动 */
+}
+
+.bottom-pane {
+  background-color: rgba(var(--glass-white-rgb), 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  flex-grow: 1; /* 剩余空间由下部区域填充 */
+  overflow: auto; /* 确保内容超出时可以滚动 */
+}
+
+.drag-bar {
+  cursor: ns-resize;
+  height: 5px;
+  background-color: rgba(var(--glass-white-rgb), 0.2);
+  margin: 0;
+}

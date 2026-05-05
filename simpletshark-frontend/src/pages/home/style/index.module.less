@@ -1,0 +1,159 @@
+.home {
+  height: calc(100vh - 100px);
+  overflow-x: hidden;
+  overflow-y: hidden;
+  position: relative;
+  color: #000;
+  :global {
+    .arco-upload-trigger-drag {
+      padding: 20px 0;
+    }
+    .arco-upload-trigger-drag .arco-icon-plus {
+      margin-bottom: 0;
+      font-size: 18px;
+    }
+  }
+  /* background now applied on outer wrapper to also cover Header */
+  .inner {
+    position: relative;
+    z-index: 1;
+  }
+  .lines {
+    margin-bottom: 0px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--color-border-1);
+    &:last-child {
+      border: none;
+    }
+  }
+  .glass-card {
+    position: relative;
+    border-radius: 12px;
+    border: 1px solid rgba(var(--glass-white-rgb), 0.24);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    padding: 16px;
+    background: transparent;
+  }
+
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: rgba(var(--glass-white-rgb), 0.14);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .glass-card > * {
+    position: relative;
+    z-index: 1;
+  }
+  .panel-header {
+    font-weight: 400;
+    font-size: 16px;
+    margin-bottom: 8px;
+    color: inherit;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    padding: 6px 0;
+  }
+  .list {
+    div {
+      padding: 0 10px;
+      margin: 0 -10px;
+      line-height: 42px;
+      border-bottom: 1px solid rgba(var(--glass-white-rgb), 0.2);
+      &:last-child {
+        border: none;
+      }
+      &:hover {
+        background: var(--color-fill-2);
+        color: #000;
+      }
+    }
+  }
+  .upload-row {
+    padding: 20px 0;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: inherit;
+  }
+  .divider {
+    height: 1px;
+    background: rgba(0, 0, 0, 0.12);
+    margin: 0 0; /* no gap between sections */
+  }
+  .input-file {
+    width: 100%;
+    border-radius: 12px;
+    border: 1px dashed rgba(var(--glass-white-rgb), 0.28);
+    background: rgba(var(--glass-white-rgb), 0.14);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    text-align: center;
+    transition: all 0.2s ease;
+    color: #000;
+    padding: 20px 0;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 16px 50px rgba(0, 0, 0, 0.22);
+    }
+  }
+
+  /* Glass styled scrollbar for panels */
+  .glass-scroll {
+    scrollbar-width: thin; /* Firefox */
+    scrollbar-color: rgba(var(--glass-white-rgb), 0.35) rgba(var(--glass-white-rgb), 0.08);
+  }
+  .glass-scroll::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .glass-scroll::-webkit-scrollbar-track {
+    background: rgba(var(--glass-white-rgb), 0.08);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+  }
+  .glass-scroll::-webkit-scrollbar-thumb {
+    background: rgba(var(--glass-white-rgb), 0.35);
+    border-radius: 10px;
+    border: 1px solid rgba(var(--glass-white-rgb), 0.25);
+    backdrop-filter: blur(10px);
+  }
+  .glass-scroll::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--glass-white-rgb), 0.5);
+  }
+}
+
+/* New outer wrapper to carry the tech background behind Header + content */
+.techBgWrap {
+  position: relative;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.techBgWrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: rgba(var(--glass-white-rgb), 0.04); /* slight alpha to trigger backdrop */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}

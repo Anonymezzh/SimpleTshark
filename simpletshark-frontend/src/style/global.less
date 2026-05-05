@@ -1,0 +1,1175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import '@arco-themes/react-arco-pro/index.less';
+
+@font-face {
+  font-family: '山海怒潮榜书';
+  src: url('@/assets/fonts/山海怒潮榜书.ttf');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --glass-white-rgb: 255, 255, 255;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 13px;
+  background-color: var(--color-bg-1);
+  word-break: break-all;
+  overflow: hidden;
+  font-family: Consolas, "Microsoft YaHei", "Microsoft YaHei UI", Menlo, Monaco, "SFMono-Regular", "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Noto Sans CJK SC", "WenQuanYi Micro Hei", "Segoe UI", "Helvetica Neue", Arial, sans-serif !important;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+img {
+  object-fit: cover;
+}
+
+.full-content {
+  min-height: calc(100vh - 120px);
+}
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+body {
+
+  .arco-table-col-has-sorter .arco-table-cell-with-sorter {
+    padding: 0;
+  }
+  .arco-table.custom-arco-table {
+    .arco-table-container {
+      .arco-table-content-inner {
+        table {
+          thead {
+            tr.arco-table-tr {
+              th.arco-table-th {
+                font-size: 13px;
+                .arco-table-th-item {
+                  padding: 5px 2px;
+                }
+              }
+            }
+          }
+
+          tbody {
+            tr.arco-table-tr {
+              td.arco-table-td {
+                padding: 0 !important;
+                text-align: justify;
+                font-size: 13px;
+                border-bottom: none;
+                border-top: none;
+                .arco-table-cell {
+                  .arco-table-cell-wrap-value {
+                  }
+                }
+              }
+
+              td.arco-table-td.custom-arco-table-row-action {
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .arco-table.custom-arco-table .arco-table-container .arco-table-content-inner table tbody tr.arco-table-tr td.arco-table-td {
+    padding: 5px 10px;
+  }
+  .arco-tree.custom-arco-tree {
+    background: transparent !important;
+
+    .custom-arco-tree-node {
+      margin-bottom: 4px;
+      background: transparent !important;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .arco-tree-node-switcher {
+        padding-top: 2px;
+      }
+
+      .arco-tree-node-title {
+        padding: 0;
+        &:hover {
+          background: initial;
+        }
+      }
+
+      &.arco-tree-node-selected {
+        .arco-tree-node-title-text > div {
+          background: rgba(var(--glass-white-rgb), 0.12);
+        }
+      }
+
+      .custom-arco-tree-title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 28px;
+        padding: 5px 8px;
+
+        span {
+          max-width: 130px;
+          display: block;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      .custom-arco-tree-action-button:hover {
+        background: rgba(var(--glass-white-rgb), 0.15) !important;
+      }
+    }
+  }
+
+  .arco-tree-node-selected {
+    .arco-tree-node-title-text > div {
+      background: rgba(var(--glass-white-rgb), 0.12);
+    }
+  }
+  .arco-tree-node-title {
+    font-size: 13px;
+  }
+  .arco-upload-trigger-tip {
+    white-space: normal !important;
+  }
+
+  .arco-dropdown-menu {
+    max-height: 300px;
+    min-width: 100px;
+  }
+
+  .arco-dropdown-menu-item {
+    padding: 0;
+    padding-right: 12px;
+    & > * {
+      padding: 0 12px 0 0;
+      width: 100%;
+    }
+  }
+  .arco-dropdown-menu-selected {
+    color: rgb(var(--primary-6)) !important;
+    background-color: rgba(var(--glass-white-rgb), 0.12) !important;
+  }
+  .arco-dropdown-menu-pop-trigger {
+    min-width: 120px !important;
+  }
+  .arco-typography.page-title {
+    margin-bottom: 16px;
+    line-height: 32px;
+  }
+
+  .arco-descriptions.single-row-descriptions {
+    .arco-descriptions-item {
+      padding-bottom: 0;
+    }
+  }
+
+  /* Safari 输入框自动填充样式 */
+  input:-webkit-autofill {
+    background-color: transparent !important;
+    -webkit-text-fill-color: var(--color-text-1);
+    transition: background-color 5000s ease-in-out 0s;
+    -webkit-box-shadow: 0 0 0 1000px rgba(var(--glass-white-rgb), 0.1) inset !important;
+  }
+
+  /* Safari 输入框透明背景修复 */
+  input,
+  textarea {
+    background-color: transparent !important;
+    background: transparent !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+  }
+
+  .arco-drawer.custom-arco-drawer {
+    .arco-drawer-header-title {
+      width: 100%;
+    }
+  }
+
+  .arco-tabs-header-nav-text
+    .arco-tabs-header-title:not(:first-of-type)::before {
+    width: 1px;
+  }
+}
+
+/* 通用输入框透明样式 - 优先级更高 */
+.arco-input-group-addbefore,
+.arco-select-addbefore,
+.arco-cascader-addbefore {
+  background-color: rgba(var(--glass-white-rgb), 0.1) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(var(--glass-white-rgb), 0.2) !important;
+  border-right: 1px solid rgba(var(--glass-white-rgb), 0.15) !important;
+}
+
+/* Form标签文本无背景 */
+.arco-form-label-item {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* 输入框默认边框 */
+.arco-input-wrapper,
+.arco-input-inner-wrapper,
+.arco-select-view,
+.arco-picker {
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Select 组件透明背景 - Safari 兼容 */
+.arco-select {
+  .arco-select-view {
+    background-color: rgba(var(--glass-white-rgb), 0.1) !important;
+    background: rgba(var(--glass-white-rgb), 0.1) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+  }
+
+  &:hover .arco-select-view {
+    background-color: rgba(var(--glass-white-rgb), 0.12) !important;
+    background: rgba(var(--glass-white-rgb), 0.12) !important;
+    border-color: rgb(var(--primary-6)) !important;
+  }
+}
+
+/* Safari 特殊处理 - Select 内部元素背景透明 */
+.arco-select-view-input,
+.arco-select-view-value,
+.arco-select-view-inner {
+  background-color: rgba(var(--glass-white-rgb), 0) !important;
+  background: rgba(var(--glass-white-rgb), 0) !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+/* 主要区域添加阴影 */
+.arco-card {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.arco-table-container {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+}
+
+.arco-layout-sider {
+  box-shadow: none !important;
+}
+
+.arco-input-inner-wrapper,
+.arco-input-number-inner-wrapper {
+  background-color: rgba(var(--glass-white-rgb), 0.1) !important;
+  background: rgba(var(--glass-white-rgb), 0.1) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+
+  &:hover {
+    background-color: rgba(var(--glass-white-rgb), 0.12) !important;
+    background: rgba(var(--glass-white-rgb), 0.12) !important;
+    border-color: rgb(var(--primary-6)) !important;
+  }
+
+  .arco-input,
+  .arco-input-number-input,
+  input.arco-input,
+  input.arco-input-number-input {
+    border: none !important;
+    background-color: transparent !important;
+    background: transparent !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+  }
+}
+
+.arco-input-group {
+  .arco-input-group-addbefore {
+    background-color: rgba(var(--glass-white-rgb), 0.1) !important;
+  }
+
+  .arco-input-inner-wrapper {
+    background-color: rgba(var(--glass-white-rgb), 0.1) !important;
+  }
+}
+
+body:not([arco-theme='dark']) {
+  .arco-input-group-addbefore,
+  .arco-select-addbefore,
+  .arco-cascader-addbefore {
+    background-color: rgba(var(--glass-white-rgb), 0.1) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(var(--glass-white-rgb), 0.2) !important;
+    border-right: 1px solid rgba(var(--glass-white-rgb), 0.15) !important;
+  }
+
+  .arco-input-inner-wrapper,
+  .arco-input-number-inner-wrapper {
+    background-color: rgba(var(--glass-white-rgb), 0.1) !important;
+    background: rgba(var(--glass-white-rgb), 0.1) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    border: 1px solid rgba(0, 0, 0, 0.15) !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+
+    &:hover {
+      background-color: rgba(var(--glass-white-rgb), 0.12) !important;
+      background: rgba(var(--glass-white-rgb), 0.12) !important;
+      border-color: rgb(var(--primary-6)) !important;
+    }
+
+    .arco-input,
+    .arco-input-number-input,
+    input.arco-input,
+    input.arco-input-number-input {
+      border: none !important;
+      background-color: transparent !important;
+      background: transparent !important;
+      -webkit-appearance: none !important;
+      appearance: none !important;
+      box-shadow: none !important;
+      -webkit-box-shadow: none !important;
+    }
+  }
+
+  .arco-select {
+    .arco-select-view {
+      background-color: rgba(var(--glass-white-rgb), 0.1) !important;
+      background: rgba(var(--glass-white-rgb), 0.1) !important;
+      backdrop-filter: blur(8px) !important;
+      -webkit-backdrop-filter: blur(8px) !important;
+      border: 1px solid rgba(0, 0, 0, 0.15) !important;
+      -webkit-appearance: none !important;
+      appearance: none !important;
+    }
+
+    &:hover .arco-select-view {
+      background-color: rgba(var(--glass-white-rgb), 0.12) !important;
+      background: rgba(var(--glass-white-rgb), 0.12) !important;
+      border-color: rgb(var(--primary-6)) !important;
+    }
+  }
+
+  /* Safari 特殊处理 - Select 内部输入框 */
+  .arco-select-view-input {
+    background-color: rgba(var(--glass-white-rgb), 0) !important;
+    background: rgba(var(--glass-white-rgb), 0) !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+  }
+
+  .arco-select-view-value {
+    background-color: rgba(var(--glass-white-rgb), 0) !important;
+    background: rgba(var(--glass-white-rgb), 0) !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+  }
+
+  .arco-select-view-inner {
+    background-color: rgba(var(--glass-white-rgb), 0) !important;
+    background: rgba(var(--glass-white-rgb), 0) !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+  }
+
+  .arco-tree-select {
+    .arco-tree-select-view {
+      background-color: rgba(var(--glass-white-rgb), 0.1);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(0, 0, 0, 0.15);
+    }
+
+    &:hover .arco-tree-select-view {
+      background-color: rgba(var(--glass-white-rgb), 0.12);
+      border-color: rgb(var(--primary-6));
+    }
+  }
+
+  .arco-cascader{
+    &:hover .arco-cascader-view {
+      background-color: rgba(var(--glass-white-rgb), 0.12);
+      border-color: rgb(var(--primary-6));
+    }
+  }
+
+  .arco-modal.custom-arco-modal {
+    width: 560px;
+    padding-left: 12px;
+    padding-right: 24px;
+
+    .arco-modal-header {
+      padding-left: 10px;
+      height: 56px;
+
+      .arco-modal-title {
+        text-align: left;
+      }
+    }
+
+    .arco-modal-content {
+      .custom-cascader-box.arco-cascader {
+        .arco-cascader-view {
+          background-color: #fff;
+        }
+      }
+    }
+
+    .arco-modal-footer {
+      .arco-btn {
+        padding: 0;
+        width: 88px;
+        height: 36px;
+      }
+    }
+
+    .arco-modal-close-icon {
+      font-size: 15px;
+    }
+  }
+}
+
+body:is([arco-theme='dark']) {
+  .arco-modal.custom-arco-modal {
+    .arco-modal-content {
+      .custom-cascader-box.arco-cascader {
+        .arco-cascader-view {
+          background-color: rgba(var(--glass-white-rgb), 0.12) !important;
+          border: none !important;
+        }
+      }
+    }
+  }
+}
+
+.arco-table-body {
+  min-height: 50px;
+} 
+.arco-table-empty-row {
+  .arco-table-td {
+    border-bottom: none;
+  }
+}
+// 分页样式修改
+.arco-pagination {
+  justify-content: flex-end;
+  margin-top: 15px;
+}
+// tabs样式
+.no-line-tabs {
+  .arco-tabs-header-nav::before {
+    height: 0;
+  }
+}
+// 详情卡片样式
+.details-card {
+  // .arco-card-body {
+  //   padding: 12px 20px !important;
+  // }
+  .arco-card-header {
+    height: 36px !important;
+    padding-top: 15px;
+  }
+  .arco-collapse-item-header {
+    border-bottom: none;
+    padding: 12px 0;
+  }
+  .arco-collapse-item-content {
+    background: rgba(var(--glass-white-rgb), 0.05);
+  }
+  h6.arco-typography,
+  .arco-card-header-title, 
+  .arco-card-meta-title {
+    font-size: 15px !important;
+  }
+}
+// 时间轴
+.arco-timeline-item {
+  min-height: 60px !important;
+}
+.resize-disabled {
+  resize: none !important;
+}
+// 日期时间框
+.arco-picker,
+.arco-cascader .arco-cascader-view {
+  background-color: rgba(var(--glass-white-rgb), 0.1) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+}
+
+// textarea 透明背景 - Safari 兼容
+.arco-textarea,
+.arco-textarea-wrapper {
+  background-color: rgba(var(--glass-white-rgb), 0.1) !important;
+  background: rgba(var(--glass-white-rgb), 0.1) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border: 1px solid rgba(0, 0, 0, 0.15) !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+
+  textarea {
+    background-color: transparent !important;
+    background: transparent !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+  }
+}
+// 选择多个人员
+.perm-row-item {
+  height: 30px;
+  &:hover {
+    .close-button {
+      display: block;
+    }
+  }
+
+  .close-button {
+    display: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    color: var(--color-text-1) !important;
+    &:hover {
+      background-color: rgba(var(--glass-white-rgb), 0.15) !important;
+    }
+  }
+}
+// 上传图片
+.arco-upload-trigger-picture {
+  min-width: 90px !important;
+  height: 90px !important;
+}
+// modal框
+.arco-modal-header .arco-modal-title {
+  text-align: left !important;
+}
+.arco-modal-simple .arco-modal-title {
+  text-align: left !important;
+}
+.arco-modal-simple .arco-modal-footer {
+  text-align: right !important;
+}
+.arco-modal-simple .arco-modal-content {
+  padding: 0 0 0 27px !important;
+}
+.coustom-cascader {
+  .arco-cascader-list-item-disabled {
+    background-color: transparent !important;
+    color: var(--color-text-3) !important;
+  }
+}
+.nation-flag {
+  width: 25px;
+  height: 17px;
+  vertical-align: text-bottom;
+}
+.datapackage-info {
+  height: calc(100vh - 580px);
+  min-height: 50px;
+  display: flex;
+  border-top: 1px solid var(--color-border);
+  .tree-container {
+    width: 44%;
+    height: 100%;
+    overflow: auto;
+    margin-top: 8px;
+    overflow-anchor: none;
+    -webkit-overflow-scrolling: touch;
+    .arco-tree-node-switcher {
+      height: 22px;
+    }
+    .arco-tree-node-title {
+      padding: 0;
+    }
+    .arco-tree-node-selected, .arco-tree-node-title:hover, .arco-tree-node:hover {
+      background: rgba(82, 101, 255, 0.2);
+    }
+    .arco-tree-node-is-leaf {
+      .arco-tree-node-switcher-icon {
+        display: none;
+      }
+      .arco-tree-node-switcher {
+        width: 5px;
+      }
+    }
+  }
+  .offset {
+    width: 56%;
+    display: flex;
+    overflow-y: auto;
+    font-size: 13px;
+    overflow-anchor: none;
+    -webkit-overflow-scrolling: touch;
+    .selected {
+      background: rgba(82, 101, 255, 0.3);
+    }
+    span {
+      display: inline-block;
+      line-height: 22px;
+      width: var(--bytes-width, 6.25%);
+      text-align: center;
+      cursor: context-menu;
+    }
+  }
+  .center {
+    padding: 8px 10px;
+    width: 63%;
+    word-break: normal;
+  }
+  .right {
+    width: 25%;
+    padding: 8px 20px;
+    word-break: normal;
+  }
+}
+
+/* Safari 专用修复 - 十六进制左侧偏移面板 - 完全透明 */
+.datapackage-info .offset .left {
+  width: 80px;
+  background-color: transparent !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  min-height: 200px;
+  margin-top: 8px;
+
+  span {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    background-color: transparent !important;
+    background: transparent !important;
+
+    &:hover {
+      cursor: default !important;
+    }
+  }
+}
+.stream-main {
+  height: calc(100vh - 240px); 
+  overflow: auto;
+}
+.send {
+  color: #C04545;
+  margin-bottom: 15px;
+  // background-color: rgb(var(--red-1));
+  // margin-bottom: 12px;
+}
+.accept {
+  margin-bottom: 15px;
+  color: #319EFF;
+  // background-color: rgb(var(--primary-1));
+  // margin-bottom: 12px;
+}
+.stream-offset {
+  display: flex;
+  overflow-y: auto;
+  .selected {
+    background: rgba(82, 101, 255, 0.3);
+  }
+  span {
+    display: inline-block;
+    line-height: 22px;
+    cursor: context-menu;
+  }
+  .left {
+    // overflow: auto;
+    span {
+      display: block;
+      width: 100%;
+      text-align: center;
+      &:hover {
+        cursor: default;
+      }
+    }
+    .selected {
+      background: rgba(82, 101, 255, 0.3);
+    }
+  }
+  .center {
+    padding-left: 40px;
+    width: 500px;
+  }
+  .right {
+    width: 300px;
+    padding: 0 50px 0 20px;
+  }
+}
+.hex-consolas {
+  font-family: Consolas, "Microsoft YaHei", "Microsoft YaHei UI", Menlo, Monaco, "SFMono-Regular", "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Noto Sans CJK SC", "WenQuanYi Micro Hei", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  }
+.td-row {
+  padding: 0 5px !important;
+}
+
+.flow-icon {
+  color: rgb(var(--primary-4));
+  padding-top: 3px;
+  &:hover {
+    cursor: pointer;
+    color: rgb(var(--primary-6));
+  }
+}
+.selected-row {
+  .td-row {
+    background: rgba(82, 101, 255, 0.25) !important;
+    border-top: 1px solid rgba(82, 101, 255, 0.6);
+    border-bottom: 1px solid rgba(82, 101, 255, 0.6);
+  }
+}
+
+.custom-arco-table tbody tr:hover {
+  background-color: rgba(49, 158, 255, 0.3) !important;
+}
+
+.custom-arco-table .react-resizable {
+  position: relative;
+  background-clip: padding-box;
+}
+
+.custom-arco-table .react-resizable-handle {
+  position: absolute;
+  width: 5px;
+  height: 20px;
+  top: 6px;
+  right: 5px;
+  cursor: col-resize;
+  z-index: 1;
+  border-right: 1px solid var(--color-border-2);
+  background: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(var(--glass-white-rgb), 0.1);
+  border-radius: 3px;
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(var(--glass-white-rgb), 0.5);
+  border-radius: 3px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.3), inset 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--glass-white-rgb), 0.7);
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.4), inset 0 0 2px rgba(0, 0, 0, 0.25);
+}
+
+::-webkit-scrollbar-corner {
+  background: rgba(var(--glass-white-rgb), 0.25);
+  box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+@supports (-moz-appearance: none) {
+  ::-moz-scrollbar {
+    width: 6px;
+  }
+
+  ::-moz-scrollbar-track {
+    background: rgba(var(--glass-white-rgb), 0.1);
+    border-radius: 3px;
+    box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2);
+  }
+
+  ::-moz-scrollbar-thumb {
+    background: rgba(var(--glass-white-rgb), 0.5);
+    border-radius: 3px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.3);
+  }
+
+  ::-moz-scrollbar-thumb:hover {
+    background: rgba(var(--glass-white-rgb), 0.7);
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.4);
+  }
+}
+
+
+.arco-table-td {
+  padding: 0 !important;
+  border-bottom: 0 !important;
+}
+
+.arco-card-body {
+  padding: 10px 10px !important;
+}
+
+.arco-tabs-content {
+  padding-top: 5px !important;
+}
+
+.arco-tree-node.arco-tree-node-selected {
+  background-color: rgba(var(--glass-white-rgb), 0.12) !important;
+}
+
+/* 树组件通用透明样式 */
+.arco-tree {
+  background: transparent !important;
+}
+
+.arco-tree-node {
+  background: transparent !important;
+}
+
+/* 侧边栏透明样式 - 最高优先级 */
+.arco-layout-sider,
+.arco-layout-sider-light {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* 侧边栏收起状态 - Safari 兼容 */
+.arco-layout-sider-collapsed {
+  background: transparent !important;
+  background-color: rgba(var(--glass-white-rgb), 0) !important;
+}
+
+.arco-layout-sider-children {
+  background: transparent !important;
+  background-color: rgba(var(--glass-white-rgb), 0) !important;
+}
+
+/* 隐藏侧边栏收起后的三个点 */
+.arco-menu-icon-only .arco-menu-item-inner .arco-menu-icon-suffix,
+.arco-menu-collapsed .arco-menu-item-inner .arco-menu-icon-suffix,
+.arco-menu-icon-only .arco-menu-icon-suffix,
+.arco-menu-collapsed .arco-menu-icon-suffix {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+input, button, select, textarea {
+  font-family: Consolas, "Microsoft YaHei", "Microsoft YaHei UI", Menlo, Monaco, "SFMono-Regular", "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Noto Sans CJK SC", "WenQuanYi Micro Hei", "Segoe UI", "Helvetica Neue", Arial, sans-serif !important;
+}
+
+/* Glass effect for main content areas */
+.arco-card {
+  background: rgba(var(--glass-white-rgb), 0.12) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(var(--glass-white-rgb), 0.18) !important;
+  border-radius: 0 !important;
+}
+
+.arco-card-body {
+  background: rgba(var(--glass-white-rgb), 0.01) !important;
+}
+
+/* Split 和 ResizeBox 组件透明 */
+.arco-split,
+.arco-resizebox {
+  background: transparent !important;
+}
+
+.arco-split-pane,
+.arco-resizebox-split-pane {
+  background: transparent !important;
+}
+
+.arco-resizebox-trigger {
+  background: rgba(var(--glass-white-rgb), 0.1) !important;
+}
+
+.arco-table {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  border-radius: 8px;
+}
+
+.arco-table-container {
+  background: transparent !important;
+}
+
+.arco-table-content,
+.arco-table-content-inner {
+  background: transparent !important;
+}
+
+.arco-table-header {
+  background: transparent !important;
+  border: none !important;
+
+  /* 隐藏表头滚动条占位区域 */
+  &::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  /* 防止滚动条占位 */
+  overflow: hidden !important;
+}
+
+.arco-table-thead,
+thead {
+  background: transparent !important;
+}
+
+thead .arco-table-th,
+.arco-table-thead > .arco-table-tr > .arco-table-th {
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.arco-table-tbody .arco-table-th,
+.arco-table-tbody .arco-table-td {
+  background: transparent !important;
+}
+
+/* 表格单元格文字溢出显示省略号 */
+.arco-table-td,
+.arco-table-th {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.arco-table-cell,
+.arco-table-cell-wrap-value {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.arco-table-body {
+  background: transparent !important;
+  position: relative !important;
+  -webkit-overflow-scrolling: touch !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+  transform: translate3d(0, 0, 0) !important;
+  overscroll-behavior: contain !important;
+}
+
+.arco-table-tr {
+  background: transparent !important;
+}
+
+.arco-table-tr:hover {
+  background: rgba(var(--glass-white-rgb), 0.15) !important;
+}
+
+.arco-table-td {
+  background: transparent !important;
+}
+
+/* 会话列表操作列的单元格背景 - 必须放在 .arco-table-td 之后以覆盖 */
+.arco-table-td.custom-arco-table-row-action {
+  background: rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+/* 会话列表操作列内部的 td-row 背景透明，让单元格背景显示 */
+.arco-table-td.custom-arco-table-row-action .td-row {
+  background: transparent !important;
+}
+
+/* 全部数据包页面操作列的单元格背景 */
+.arco-table-td.datapacket-operation-column {
+  background: rgba(255, 255, 255, 0.5) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+.arco-table-td.datapacket-operation-column .td-row {
+  background: transparent !important;
+}
+
+.arco-pagination {
+  background: transparent !important;
+}
+
+.arco-menu {
+  background: transparent !important;
+}
+
+.arco-menu-item,
+.arco-menu-inline-header {
+  background: transparent !important;
+  &:hover {
+    background: rgba(var(--glass-white-rgb), 0.15) !important;
+  }
+}
+
+.arco-menu-item-selected {
+  background: rgba(var(--glass-white-rgb), 0.2) !important;
+}
+
+/* 侧边栏收起时的菜单项图标背景 */
+.arco-menu-collapsed .arco-menu-item,
+.arco-menu-icon-only .arco-menu-item,
+.arco-menu-pop .arco-menu-item {
+  background: transparent !important;
+  &:hover {
+    background: rgba(var(--glass-white-rgb), 0.15) !important;
+  }
+}
+
+.arco-menu-pop {
+  background: rgba(var(--glass-white-rgb), 0.1) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* Additional glass effects for other components */
+.arco-tabs-header {
+  background: rgba(var(--glass-white-rgb), 0.08) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.arco-collapse-item {
+  background: rgba(var(--glass-white-rgb), 0.08) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(var(--glass-white-rgb), 0.15) !important;
+  margin-bottom: 8px;
+  border-radius: 8px;
+}
+
+.arco-collapse-item-content {
+  background: rgba(var(--glass-white-rgb), 0.05) !important;
+}
+
+/* Safari 会话详情页面左侧时序列表透明度修复 */
+/* 强制 Typography 组件背景透明 */
+.arco-typography,
+.arco-typography-paragraph {
+  background: transparent !important;
+  background-color: transparent !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+/* 强制 Grid.Col 背景透明 */
+.arco-col {
+  background: transparent !important;
+  background-color: transparent !important;
+  -webkit-appearance: none !important;
+  appearance: none !important;
+}
+
+/* Popover 弹窗半透明背景样式 - 正确的类名 */
+.arco-popover-content {
+  position: relative !important;
+  background: rgba(var(--glass-white-rgb), 0.14) !important;
+  background-color: rgba(var(--glass-white-rgb), 0.14) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  border: 1px solid rgba(var(--glass-white-rgb), 0.24) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+  max-height: 50vh !important;
+  overflow: visible !important;
+  border-radius: 8px !important;
+  padding: 0 !important;
+}
+
+.arco-popover-arrow.arco-trigger-arrow {
+  background: rgba(var(--glass-white-rgb), 0.14) !important;
+  background-color: rgba(var(--glass-white-rgb), 0.14) !important;
+  border-color: rgba(var(--glass-white-rgb), 0.24) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+}
+
+.arco-popover-inner-content {
+  position: relative !important;
+  z-index: 1 !important;
+  max-height: calc(50vh - 60px) !important;
+  overflow-y: auto !important;
+  background: transparent !important;
+  padding: 12px 16px !important;
+}
+
+.arco-popover-title {
+  position: relative !important;
+  z-index: 1 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+}
+
+/* 确保 Popover 内容区域包装的 div 透明 */
+.arco-popover-content > div {
+  background: transparent !important;
+}
+
+/* 确保 Popover 内的最外层 glass-card（Capture组件容器）保持透明 */
+.arco-popover-content .glass-card:first-child {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.arco-popover-content .glass-card:first-child::before {
+  display: none !important;
+}
+
+/* Popover 内的嵌套 glass-card（网卡列表项）恢复原有样式 */
+.arco-popover-content .glass-card .glass-card {
+  background: transparent !important;
+  position: relative !important;
+  /* 不强制覆盖 border, box-shadow, padding，让它们保持原有样式 */
+}
+
+.arco-popover-content .glass-card .glass-card::before {
+  content: '' !important;
+  display: block !important;
+  position: absolute !important;
+  inset: 0 !important;
+  border-radius: inherit !important;
+  background: rgba(var(--glass-white-rgb), 0.14) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+/* 确保网卡 glass-card 的子元素在伪元素之上 */
+.arco-popover-content .glass-card .glass-card > * {
+  position: relative !important;
+  z-index: 1 !important;
+}

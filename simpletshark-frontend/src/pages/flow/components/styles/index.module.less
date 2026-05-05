@@ -1,0 +1,343 @@
+// 会话详情窗口背景包装器
+.detailsWrap {
+  position: relative;
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  // 背景模糊层
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: rgba(255, 255, 255, calc(4 / 100));
+    background: rgba(var(--glass-white-rgb), 0.04);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  // 所有子元素在模糊层上方
+  > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.details {
+  position: relative;
+  z-index: 1;
+  :global {
+    // Grid 组件透明
+    .arco-row,
+    .arco-col {
+      background: transparent !important;
+      background-color: transparent !important;
+    }
+
+    // Typography 组件透明
+    .arco-typography,
+    .arco-typography-paragraph {
+      background: transparent !important;
+      background-color: transparent !important;
+    }
+
+    // Tabs 容器样式
+    .arco-tabs-card-gutter {
+      background: transparent;
+      border: none;
+    }
+
+    // TabPane 内容区域强制透明
+    .arco-tabs-content-item,
+    .arco-tabs-tabpane {
+      background: transparent !important;
+      background-color: transparent !important;
+    }
+
+    .arco-tabs-card-gutter > .arco-tabs-content {
+      height: calc(100vh - 125px);
+      background: rgba(255, 255, 255, calc(12 / 100));
+      background: rgba(var(--glass-white-rgb), 0.12);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, calc(18 / 100));
+      border: 1px solid rgba(var(--glass-white-rgb), 0.18);
+      border-radius: 0;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      overflow: visible !important;
+    }
+
+    // TabPane 确保不裁剪滚动条
+    .arco-tabs-content-item {
+      overflow: visible !important;
+    }
+
+    // Tabs Header 样式
+    .arco-tabs-header {
+      background: transparent;
+      border: none !important;
+      border-bottom: none !important;
+    }
+
+    .arco-tabs-header-nav {
+      background: transparent;
+      border: none !important;
+
+      &::before {
+        display: none !important;
+      }
+    }
+
+    .arco-tabs-header-title {
+      border: none !important;
+
+      &::before {
+        display: none !important;
+      }
+    }
+
+    // Tab 标签样式 - card-gutter 类型
+    .arco-tabs-card-gutter {
+      // 未选中的 Tab - 浅灰色背景，无阴影
+      .arco-tabs-header-title {
+        background: rgba(200, 200, 200, 0.3) !important;
+        background-color: rgba(200, 200, 200, 0.3) !important;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: none !important;
+        box-shadow: none !important;
+
+        &:hover {
+          background: rgba(200, 200, 200, 0.4) !important;
+          background-color: rgba(200, 200, 200, 0.4) !important;
+          box-shadow: none !important;
+        }
+      }
+
+      // 选中的 Tab - 浅灰色背景，无阴影
+      .arco-tabs-header-title-active {
+        // background: transparent !important;
+        // background-color: transparent !important;
+        background: rgba(255, 255, 255, 0.4) !important;
+        background-color: rgba(255, 255, 255, 0.4) !important;
+        // border-left: solid 1px #aaa !important;
+        // border-top: solid 1px #aaa !important;
+        // border-right: solid 1px #aaa !important;
+        // border-bottom: none;
+        box-shadow: none !important;
+      }
+    }
+
+    // 通用 Tab 样式（兼容其他类型）
+    .arco-tabs-tab {
+      background: rgba(255, 255, 255, calc(10 / 100)) !important;
+      background: rgba(var(--glass-white-rgb), 0.1) !important;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: none !important;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15) !important;
+
+      &:hover {
+        background: rgba(255, 255, 255, calc(12 / 100)) !important;
+        background: rgba(var(--glass-white-rgb), 0.12) !important;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18) !important;
+      }
+    }
+
+    .arco-tabs-tab-active {
+      background: rgba(255, 255, 255, calc(85 / 100)) !important;
+      background: rgba(var(--glass-white-rgb), 0.85) !important;
+      border: none !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    // Card 容器样式
+    .arco-card {
+      background: rgba(255, 255, 255, calc(12 / 100));
+      background: rgba(var(--glass-white-rgb), 0.12);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, calc(18 / 100));
+      border: 1px solid rgba(var(--glass-white-rgb), 0.18);
+      border-radius: 0 !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    // Typography 样式
+    .arco-typography {
+      background: transparent;
+      border: none;
+    }
+
+    // Table 样式
+    .arco-table {
+      background: transparent;
+      border: none;
+    }
+
+    .arco-table-thead {
+      background: transparent;
+      border: none;
+    }
+
+    .arco-table-th {
+      background: transparent;
+      border: none !important;
+      border-bottom: none !important;
+    }
+
+    .arco-table-tr {
+      border: none;
+    }
+
+    .arco-table-td {
+      border: none !important;
+      border-bottom: none !important;
+    }
+
+    // 去掉表格的所有边框线
+    .arco-table-container::before,
+    .arco-table-container::after {
+      display: none !important;
+    }
+
+    // 表格 body 样式 - 使用和时序图一样的滚动条颜色
+    .arco-table-body {
+      border: none;
+
+      // 使用和左侧时序图一样的全局滚动条样式
+      &::-webkit-scrollbar {
+        width: 10px !important;
+        height: 10px !important;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: rgba(var(--glass-white-rgb), 0.1) !important;
+        border-radius: 3px !important;
+        box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2) !important;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: rgba(var(--glass-white-rgb), 0.5) !important;
+        border-radius: 3px !important;
+        box-shadow: 0 0 4px rgba(0, 0, 0, 0.3), inset 0 0 2px rgba(0, 0, 0, 0.2) !important;
+
+        &:hover {
+          background: rgba(var(--glass-white-rgb), 0.7) !important;
+          box-shadow: 0 0 6px rgba(0, 0, 0, 0.4), inset 0 0 2px rgba(0, 0, 0, 0.25) !important;
+        }
+      }
+
+      &::-webkit-scrollbar-corner {
+        background: rgba(var(--glass-white-rgb), 0.25) !important;
+        box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.2) !important;
+      }
+    }
+  }
+  .details-col {
+    width: 100%;
+    height: calc(100vh - 155px);
+    overflow: auto;
+    padding: 8px;
+    background: transparent !important;
+    background-color: transparent !important;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    -webkit-appearance: none;
+    appearance: none;
+
+    .first-col {
+      padding: 8px 12px;
+      background-color: transparent !important;
+      background: transparent !important;
+      border-radius: 0;
+      border: none;
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      -webkit-appearance: none !important;
+      appearance: none !important;
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.15) !important;
+        background: rgba(255, 255, 255, 0.15) !important;
+      }
+    }
+  }
+  .box {
+    margin-top: 6px;
+    padding: 12px 8px;
+    border: none;
+    border-radius: 0;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    -webkit-appearance: none;
+    appearance: none;
+    &:hover, &.selected {
+      background: rgba(82, 101, 255, 0.25) !important;
+      background-color: rgba(82, 101, 255, 0.25) !important;
+    }
+  }
+  .arrow {
+    width: 55px;
+    position: relative;
+    text-align: center;
+
+    .agreement {
+      width: 55px;
+      position: absolute;
+      top: -5px;
+      left: 0px;
+      text-align: center;
+    }
+
+    .icon {
+      width: 55px;
+      height: 1px;
+      display: inline-block;
+      background: var(--color-border-4);
+      position: relative;
+      margin-top: 20px;
+
+      &::after,
+      &::before {
+        width: 0;
+        height: 0;
+        background: transparent;
+        position: absolute;
+        top: -4px;
+        left: 53px;
+        content: '';
+      }
+      &::after {
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-left: 8px solid var(--color-border-4);
+      }
+      &::before {
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+        border-right: 8px solid var(--color-border-4);
+        left: -5px;
+      }
+    }
+    &.arrow-left {
+      .icon {
+        &::after {
+          display: none;
+          border-right-color: transparent;
+        }
+      }
+    }
+    &.arrow-right {
+      .icon {
+        &::before {
+          display: none;
+          border-left-color: transparent;
+        }
+      }
+    }
+  }
+}

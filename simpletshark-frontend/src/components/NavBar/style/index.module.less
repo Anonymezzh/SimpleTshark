@@ -1,0 +1,91 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  background: transparent;
+  height: 100%;
+  clip-path: inset(-10px -10px 0px -10px);
+}
+
+.left {
+  display: flex;
+  align-items: center;
+
+  .global-component {
+    padding: 0 40px;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  box-sizing: border-box;
+
+  // 除首页按钮外的其他按钮统一背景色
+  :global {
+
+    // 禁用状态保持灰色
+    .arco-btn-disabled {
+      background-color: var(--color-fill-3) !important;
+      border-color: var(--color-fill-3) !important;
+      color: var(--color-text-4) !important;
+    }
+  }
+}
+
+.logo-name {
+  color: var(--color-text-1);
+  font-weight: 500;
+  font-size: 20px;
+  margin-left: 10px;
+  font-family: Consolas, "Microsoft YaHei", "Microsoft YaHei UI", Menlo, Monaco, "SFMono-Regular", "PingFang SC", "Hiragino Sans GB", "Heiti SC", "Noto Sans CJK SC", "WenQuanYi Micro Hei", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+.right {
+  display: flex;
+  list-style: none;
+  padding-right: 20px;
+
+  li {
+    padding: 0 8px;
+    display: flex;
+    align-items: center;
+  }
+
+  a {
+    text-decoration: none;
+    color: var(--color-text-1);
+  }
+}
+
+.username {
+  cursor: pointer;
+}
+
+.round {
+  :global(.arco-input-inner-wrapper) {
+    border-radius: 16px;
+  }
+
+  svg {
+    font-size: 16px;
+  }
+}
+
+.dropdown-icon {
+  margin-right: 8px;
+  font-size: 16px;
+  vertical-align: text-bottom;
+}
+
+.fixed-settings {
+  position: fixed;
+  top: 280px;
+  right: 0px;
+
+  svg {
+    font-size: 18px;
+    vertical-align: -4px;
+  }
+}

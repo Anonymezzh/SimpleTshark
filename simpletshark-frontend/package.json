@@ -1,0 +1,157 @@
+{
+  "name": "simpletshark",
+  "version": "1.0.2",
+  "description": "SimpleTshark",
+  "private": true,
+  "homepage": "./",
+  "scripts": {
+    "start": "react-app-rewired start",
+    "dev": "react-app-rewired start",
+    "build": "react-app-rewired build",
+    "tauri-dev": "node scripts/tauri-dev.js",
+    "tauri-build-win-app": "powershell -ExecutionPolicy Bypass -File .\\scripts\\tauri-build-win.ps1 app",
+    "tauri-build-win": "powershell -ExecutionPolicy Bypass -File .\\scripts\\tauri-build-win.ps1 nsis",
+    "tauri-build-mac-app": "bash tauri-build-clean.sh app",
+    "tauri-build-mac": "bash tauri-build-clean.sh dmg",
+    "tauri-build-linux-app": "bash tauri-build-linux.sh app",
+    "tauri-build-linux": "bash tauri-build-linux.sh deb"
+  },
+  "dependencies": {
+    "@antv/data-set": "^0.11.8",
+    "@arco-design/color": "^0.4.0",
+    "@arco-design/web-react": "^2.65.0",
+    "@arco-themes/react-arco-pro": "^0.0.7",
+    "@loadable/component": "^5.13.2",
+    "@reduxjs/toolkit": "^2.2.6",
+    "@tauri-apps/plugin-log": "^2.7.0",
+    "@tauri-apps/plugin-os": "^2.3.2",
+    "@tauri-apps/plugin-shell": "^2.3.3",
+    "@turf/turf": "^6.5.0",
+    "ajv": "^8.17.1",
+    "ajv-keywords": "^5.1.0",
+    "axios": "^1.7.2",
+    "bizcharts": "^4.1.11",
+    "classnames": "^2.3.1",
+    "copy-to-clipboard": "^3.3.1",
+    "cropperjs": "^1.6.2",
+    "dayjs": "^1.11.13",
+    "echarts": "^5.5.1",
+    "echarts-for-react": "^3.0.2",
+    "gm-crypto": "^0.1.12",
+    "http-proxy-middleware": "^3.0.3",
+    "js-cookie": "^3.0.5",
+    "lodash": "^4.17.21",
+    "lodash.flow": "^3.5.0",
+    "mitt": "^3.0.1",
+    "mockjs": "^1.1.0",
+    "nprogress": "^0.2.0",
+    "query-string": "^6.13.8",
+    "querystring": "^0.2.1",
+    "re-resizable": "^6.10.3",
+    "react": "^17.0.2",
+    "react-beautiful-dnd": "^13.1.1",
+    "react-color": "^2.18.1",
+    "react-cropper": "^2.3.3",
+    "react-dom": "^17.0.2",
+    "react-redux": "^7.2.6",
+    "react-resizable": "^3.0.5",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.3.4",
+    "redux": "^4.2.1",
+    "sm-crypto": "^0.3.13",
+    "sudo-prompt": "^9.2.1"
+  },
+  "devDependencies": {
+    "@arco-iconbox/react-yc-icon": "^0.0.5",
+    "@arco-plugins/webpack-react": "^1.1.1",
+    "@svgr/webpack": "^5.5.0",
+    "@tauri-apps/api": "^2.9.0",
+    "@tauri-apps/cli": "^2.9.1",
+    "@types/js-cookie": "^3.0.6",
+    "@types/lodash": "^4.17.7",
+    "@types/react": "^17.0.0",
+    "@types/react-beautiful-dnd": "^13.1.8",
+    "@types/react-dom": "^17.0.0",
+    "@types/react-router-dom": "^5.3.3",
+    "@types/sm-crypto": "^0.3.4",
+    "@typescript-eslint/eslint-plugin": "^5.4.0",
+    "@typescript-eslint/parser": "^5.4.0",
+    "customize-cra": "^1.0.0",
+    "customize-cra-less-loader": "^2.0.0",
+    "eslint": "^8.9.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-babel": "^5.3.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-react-hooks": "^4.3.0",
+    "husky": "^7.0.2",
+    "less": "^4.1.2",
+    "less-loader": "^10.2.0",
+    "postcss-less": "^5.0.0",
+    "prettier": "^2.4.1",
+    "pretty-quick": "^3.1.2",
+    "progress-bar-webpack-plugin": "^2.1.0",
+    "react-app-rewired": "^2.1.8",
+    "react-scripts": "^5.0.0",
+    "stylelint": "^14.1.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-standard": "^24.0.0",
+    "tailwindcss": "^3.4.5",
+    "typescript": "^4.5.2"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "build": {
+    "asar": true,
+    "appId": "com.xuanyuan.simpletshark",
+    "productName": "SimpleTshark",
+    "executableName": "SimpleTshark",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "build/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "resources/tshark_${os}/",
+        "to": "../resources/",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ],
+    "mac": {
+      "target": "dmg",
+      "icon": "public/icon.icns",
+      "extendInfo": {
+        "NSNetworkUsageDescription": "需要网络权限以捕获和分析数据包",
+        "NSLocalNetworkUsageDescription": "需要访问本地网络以监控流量"
+      }
+    },
+    "win": {
+      "target": "nsis",
+      "icon": "public/logo.ico",
+      "requestedExecutionLevel": "requireAdministrator"
+    },
+    "nsis": {
+      "installerIcon": "public/logo.ico",
+      "uninstallerIcon": "public/logo.ico",
+      "createDesktopShortcut": "ask",
+      "createStartMenuShortcut": true,
+      "shortcutName": "SimpleTshark",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
+  }
+}

@@ -1,0 +1,117 @@
+.page-control-wrapper {
+  display: flex;
+  align-items: center;
+
+  :global {
+    .arco-btn-group {
+      flex-shrink: 0;
+    }
+  }
+
+  .page-filter-button {
+    color: var(--color-text-1);
+    font-size: 18px;
+    flex-shrink: 0;
+
+    &.active {
+      border-color: transparent;
+      color: rgb(var(--primary-6));
+      background-color: var(--color-fill-2);
+    }
+  }
+}
+
+.search-form-wrapper {
+  margin-bottom: 20px;
+  background-color: var(--color-neutral-2);
+  border-radius: 4px;
+  padding: 24px 20px;
+  display: none;
+
+  :global {
+    .arco-input-group {
+      display: flex;
+
+      .arco-input-group-addbefore {
+        display: block;
+        width: 130px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        line-height: 1.5715;
+        flex-shrink: 0;
+      }
+    }
+
+    .arco-select-addbefore,
+    .arco-cascader-addbefore {
+      width: 130px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .arco-input-inner-wrapper,
+    .arco-select-view,
+    .arco-cascader-view {
+      border-color: var(--color-neutral-4) !important;
+      border-left-color: transparent !important;
+    }
+
+    .arco-picker-prefix {
+      width: 130px;
+      position: relative;
+
+      &:after {
+        content: '';
+        position: absolute;
+        height: 32px;
+        width: 1px;
+        background: var(--color-neutral-3);
+        right: 0;
+        top: -4px;
+      }
+    }
+  }
+}
+
+.search-form {
+  padding-right: 20px;
+
+  :global(.arco-form-label-item-left) {
+    > label {
+      white-space: nowrap;
+    }
+  }
+
+  :global(.arco-form-item-wrapper) {
+    :global(.arco-cascader-view) {
+      background-color: #fff;
+      border: 1px solid #c9cdd4;
+    }
+
+    :global(.arco-picker) {
+      background-color: #fff;
+      border: 1px solid #c9cdd4;
+    }
+  }
+}
+
+.no-line-tabs {
+  :global {
+    .arco-tabs-header-nav::before {
+      height: 0;
+    }
+  }
+}
+
+.tdContent {
+  max-width: 400px;
+}
+
+.operation {
+  display: flex;
+  justify-content: center;
+}

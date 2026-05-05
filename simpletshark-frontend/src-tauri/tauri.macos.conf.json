@@ -1,0 +1,13 @@
+{
+  "bundle": {
+    "targets": [
+      "app",
+      "dmg"
+    ],
+    "resources": [
+      "tshark_server*",
+      "tshark_fields.db"
+    ]
+  }
+}
+

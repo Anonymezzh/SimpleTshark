@@ -1,0 +1,16 @@
+{
+  "bundle": {
+    "targets": [
+      "deb"
+    ],
+    "resources": [
+      "tshark_server*",
+      "tshark_fields.db"
+    ],
+    "linux": {
+      "deb": {
+        "depends": []
+      }
+    }
+  }
+}

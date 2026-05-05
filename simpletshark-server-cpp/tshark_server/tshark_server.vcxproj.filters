@@ -1,0 +1,421 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="controller">
+      <UniqueIdentifier>{767c956d-3908-48a4-9df2-cc3f2d9c86a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="sql">
+      <UniqueIdentifier>{85ce4937-9785-4a60-8c4b-dfed66c3e530}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_library">
+      <UniqueIdentifier>{09479a36-db54-43b5-a543-2b51d1c31472}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_library\httplib">
+      <UniqueIdentifier>{439765b9-109d-4dfd-8b5c-fa386638d17e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_library\ip2region">
+      <UniqueIdentifier>{1344314b-e753-484f-8c4c-bdd1f571857c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_library\rapidjson">
+      <UniqueIdentifier>{e8618142-23e7-42c3-9dcf-520cadaabbf0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_library\rapidxml">
+      <UniqueIdentifier>{81cad3da-1df7-4c49-a6a8-af1fa61db45b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_library\sqlite3">
+      <UniqueIdentifier>{11f87fb5-f1ae-460e-9f80-2316bb058efb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_library\rapidjson\error">
+      <UniqueIdentifier>{69758329-4b7b-4b63-8b2b-470ef2116622}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_library\rapidjson\internal">
+      <UniqueIdentifier>{e27f4e82-e9a8-40cf-9838-7864435d7009}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_library\rapidjson\msinttypes">
+      <UniqueIdentifier>{0521d64d-f5a0-4e79-a153-c23fbd70197f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="third_library\loguru">
+      <UniqueIdentifier>{07aca096-848c-46b9-8025-b535bdc710f1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="tshark_server.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="tshark_manager.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="third_library\ip2region\ip2region_util.cpp">
+      <Filter>third_library\ip2region</Filter>
+    </ClCompile>
+    <ClCompile Include="third_library\ip2region\xdb_bench.cc">
+      <Filter>third_library\ip2region</Filter>
+    </ClCompile>
+    <ClCompile Include="third_library\ip2region\xdb_search.cc">
+      <Filter>third_library\ip2region</Filter>
+    </ClCompile>
+    <ClCompile Include="third_library\sqlite3\sqlite3.c">
+      <Filter>third_library\sqlite3</Filter>
+    </ClCompile>
+    <ClCompile Include="third_library\loguru\loguru.cpp">
+      <Filter>third_library\loguru</Filter>
+    </ClCompile>
+    <ClCompile Include="tshark_filter.hpp">
+      <Filter>头文件</Filter>
+    </ClCompile>
+    <ClCompile Include="pagehelper.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="database.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="misc_util.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="process_util.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tshark_api.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tshark_datatype.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tshark_errorcode.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tshark_manager.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tshark_util.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="controller\base_controller.hpp">
+      <Filter>controller</Filter>
+    </ClInclude>
+    <ClInclude Include="controller\packet_controller.hpp">
+      <Filter>controller</Filter>
+    </ClInclude>
+    <ClInclude Include="controller\session_controller.hpp">
+      <Filter>controller</Filter>
+    </ClInclude>
+    <ClInclude Include="controller\stats_controller.hpp">
+      <Filter>controller</Filter>
+    </ClInclude>
+    <ClInclude Include="sql\packet_sql.hpp">
+      <Filter>sql</Filter>
+    </ClInclude>
+    <ClInclude Include="sql\session_sql.hpp">
+      <Filter>sql</Filter>
+    </ClInclude>
+    <ClInclude Include="sql\stats_sql.hpp">
+      <Filter>sql</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\httplib\httplib.h">
+      <Filter>third_library\httplib</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\ip2region\ip2region_util.h">
+      <Filter>third_library\ip2region</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\ip2region\xdb_bench.h">
+      <Filter>third_library\ip2region</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\ip2region\xdb_search.h">
+      <Filter>third_library\ip2region</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\sqlite3\sqlite3.h">
+      <Filter>third_library\sqlite3</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidxml\rapidxml.hpp">
+      <Filter>third_library\rapidxml</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidxml\rapidxml_iterators.hpp">
+      <Filter>third_library\rapidxml</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidxml\rapidxml_print.hpp">
+      <Filter>third_library\rapidxml</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidxml\rapidxml_utils.hpp">
+      <Filter>third_library\rapidxml</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\allocators.h">
+      <Filter>third_library\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\cursorstreamwrapper.h">
+      <Filter>third_library\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\document.h">
+      <Filter>third_library\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\encodedstream.h">
+      <Filter>third_library\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\encodings.h">
+      <Filter>third_library\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\filereadstream.h">
+      <Filter>third_library\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\filewritestream.h">
+      <Filter>third_library\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\fwd.h">
+      <Filter>third_library\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\istreamwrapper.h">
+      <Filter>third_library\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\memorybuffer.h">
+      <Filter>third_library\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\memorystream.h">
+      <Filter>third_library\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\ostreamwrapper.h">
+      <Filter>third_library\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\pointer.h">
+      <Filter>third_library\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\prettywriter.h">
+      <Filter>third_library\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\rapidjson.h">
+      <Filter>third_library\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\reader.h">
+      <Filter>third_library\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\schema.h">
+      <Filter>third_library\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\stream.h">
+      <Filter>third_library\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\stringbuffer.h">
+      <Filter>third_library\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\uri.h">
+      <Filter>third_library\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\writer.h">
+      <Filter>third_library\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\error\en.h">
+      <Filter>third_library\rapidjson\error</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\error\error.h">
+      <Filter>third_library\rapidjson\error</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\internal\biginteger.h">
+      <Filter>third_library\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\internal\clzll.h">
+      <Filter>third_library\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\internal\diyfp.h">
+      <Filter>third_library\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\internal\dtoa.h">
+      <Filter>third_library\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\internal\ieee754.h">
+      <Filter>third_library\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\internal\itoa.h">
+      <Filter>third_library\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\internal\meta.h">
+      <Filter>third_library\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\internal\pow10.h">
+      <Filter>third_library\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\internal\regex.h">
+      <Filter>third_library\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\internal\stack.h">
+      <Filter>third_library\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\internal\strfunc.h">
+      <Filter>third_library\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\internal\strtod.h">
+      <Filter>third_library\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\internal\swap.h">
+      <Filter>third_library\rapidjson\internal</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\msinttypes\inttypes.h">
+      <Filter>third_library\rapidjson\msinttypes</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\rapidjson\msinttypes\stdint.h">
+      <Filter>third_library\rapidjson\msinttypes</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\loguru\loguru.hpp">
+      <Filter>third_library\loguru</Filter>
+    </ClInclude>
+    <ClInclude Include="tshark_translate.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="proto_list.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="controller\adaptor_controller.hpp">
+      <Filter>controller</Filter>
+    </ClInclude>
+    <ClInclude Include="pagehelper.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="guid_util.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tshark_reporter.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\filtering\comparers.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\filtering\event_filter.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\filtering\predicates.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\filtering\view_adapters.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\testing\event_filter_proxy.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\testing\extended_data_builder.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\testing\filler.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\testing\proxy.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\testing\record_builder.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\testing\record_property_thunk.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\testing\synth_record.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\client.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\collection_view.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\compiler_check.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\errors.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\etw.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\guid.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\kernel_guids.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\kernel_providers.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\kt.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\parse_types.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\parser.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\perfinfo_groupmask.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\property.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\provider.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\schema.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\schema_locator.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\size_provider.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\tdh_helpers.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\trace.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\trace_context.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\ut.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\version_helpers.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs\wstring_convert.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\krabs\krabs.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="tshark_crash_handler.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="process_network_monitor.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="process_network_monitor_windows.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="controller\process_controller.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="network_stats_util.hpp">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="third_library\ip2region\ip2region_xdb_data.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="tshark_fields.py" />
+    <None Include="tshark_fields.db" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="tshark_fields.txt" />
+  </ItemGroup>
+</Project>
