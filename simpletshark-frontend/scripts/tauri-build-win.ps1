@@ -9,6 +9,75 @@ $ErrorActionPreference = 'Stop'
 function Write-Info($msg) { Write-Host $msg -ForegroundColor Cyan }
 function Write-Step($msg) { Write-Host $msg -ForegroundColor Green }
 
+function Resolve-CommandPath {
+  param(
+    [string]$CommandName,
+    [string[]]$Fallbacks = @()
+  )
+
+  $cmd = Get-Command $CommandName -ErrorAction SilentlyContinue
+  if ($cmd) { return $cmd.Source }
+
+  foreach ($path in $Fallbacks) {
+    if ($path -and (Test-Path -LiteralPath $path)) {
+      return $path
+    }
+  }
+
+  return $null
+}
+
+function Import-VsDevEnvironment {
+  if (Get-Command link.exe -ErrorAction SilentlyContinue) {
+    return
+  }
+
+  $vswhereCandidates = @(
+    "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe",
+    "${env:ProgramFiles}\Microsoft Visual Studio\Installer\vswhere.exe"
+  ) | Where-Object { $_ -and (Test-Path -LiteralPath $_) }
+
+  $vcvarsCandidates = New-Object System.Collections.Generic.List[string]
+
+  foreach ($vswhere in $vswhereCandidates) {
+    try {
+      $installPath = & $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath 2>$null
+      if ($installPath) {
+        $vcvarsCandidates.Add((Join-Path $installPath 'VC\Auxiliary\Build\vcvars64.bat'))
+      }
+    } catch {}
+  }
+
+  $drives = @($env:SystemDrive, 'C:', 'D:')
+  $versions = @('18', '2022', '17', '2019')
+  $editions = @('Enterprise', 'Professional', 'Community', 'BuildTools')
+  foreach ($drive in ($drives | Where-Object { $_ } | Select-Object -Unique)) {
+    foreach ($version in $versions) {
+      foreach ($edition in $editions) {
+        $vcvarsCandidates.Add((Join-Path "${drive}\Program Files\Microsoft Visual Studio\$version\$edition" 'VC\Auxiliary\Build\vcvars64.bat'))
+        $vcvarsCandidates.Add((Join-Path "${drive}\Program Files (x86)\Microsoft Visual Studio\$version\$edition" 'VC\Auxiliary\Build\vcvars64.bat'))
+      }
+    }
+  }
+
+  $vcvarsPath = $vcvarsCandidates | Where-Object { Test-Path -LiteralPath $_ } | Select-Object -First 1
+  if (-not $vcvarsPath) {
+    throw "MSVC build environment not found. Install Visual Studio Build Tools with the 'Desktop development with C++' workload."
+  }
+
+  Write-Info "Loading MSVC environment from: $vcvarsPath"
+  $envDump = & cmd.exe /d /c "call `"$vcvarsPath`" >nul && set"
+  foreach ($line in $envDump) {
+    if ($line -match '^(.*?)=(.*)$') {
+      [System.Environment]::SetEnvironmentVariable($matches[1], $matches[2], 'Process')
+    }
+  }
+
+  if (-not (Get-Command link.exe -ErrorAction SilentlyContinue)) {
+    throw "MSVC environment was loaded, but link.exe is still unavailable."
+  }
+}
+
 function Sync-Version {
   Write-Step "[2/5] Sync version..."
   $root = Join-Path $PSScriptRoot '..'
@@ -145,7 +214,9 @@ function Build-Tauri {
   }
 
   # Prefer cargo-installed tauri-cli to avoid npx downloading from GitHub
-  $cargoPath = (Get-Command cargo -ErrorAction SilentlyContinue).Source
+  $cargoPath = Resolve-CommandPath 'cargo' @(
+    (Join-Path $env:USERPROFILE '.cargo\bin\cargo.exe')
+  )
   $useCargo = $false
   if ($cargoPath) {
     try {
@@ -175,16 +246,22 @@ function Build-Tauri {
       $cmdPath = $cargoPath
       $args = @('tauri', 'build', '--verbose')
     } else {
-      # Fallback to npx if cargo tauri is unavailable
-      $cmdPath = (Get-Command npx -ErrorAction SilentlyContinue).Source
-      if (-not $cmdPath) {
-        $nodePF = Join-Path $env:ProgramFiles 'nodejs\npx.cmd'
-        $nodeX86 = Join-Path ${env:ProgramFiles(x86)} 'nodejs\npx.cmd'
-        if (Test-Path $nodePF) { $cmdPath = $nodePF }
-        elseif (Test-Path $nodeX86) { $cmdPath = $nodeX86 }
+      # Prefer project-local tauri CLI to avoid npx/environment inconsistencies
+      $localTauri = Join-Path $root 'node_modules\.bin\tauri.cmd'
+      if (Test-Path $localTauri) {
+        $cmdPath = $localTauri
+        $args = @('build', '--verbose')
+      } else {
+        # Fallback to npx if local tauri CLI is unavailable
+        $cmdPath = Resolve-CommandPath 'npx' @(
+          (Join-Path $env:ProgramFiles 'nodejs\npx.cmd'),
+          (Join-Path ${env:ProgramFiles(x86)} 'nodejs\npx.cmd')
+        )
+        if (-not $cmdPath) {
+          throw "Neither 'cargo tauri', local 'node_modules/.bin/tauri.cmd', nor 'npx' was found. Install tauri-cli via 'cargo install tauri-cli --version 2' or install Node.js."
+        }
+        $args = @('tauri', 'build', '--verbose')
       }
-      if (-not $cmdPath) { throw "Neither 'cargo tauri' nor 'npx' was found. Install tauri-cli via 'cargo install tauri-cli --version 2' or install Node.js." }
-      $args = @('tauri', 'build', '--verbose')
     }
 
     Push-Location $root
@@ -206,6 +283,25 @@ function Build-Tauri {
       }
     } finally {
       Pop-Location
+    }
+
+    $mainExe = Get-ChildItem $relTarget -Filter *.exe -File -ErrorAction SilentlyContinue |
+      Where-Object { $_.Name -notmatch 'helper' -and $_.Name -notmatch 'server' } |
+      Sort-Object Length -Descending | Select-Object -First 1
+
+    if (-not $mainExe) {
+      Write-Warning "No main exe was produced in target/release after Tauri build. Falling back to cargo build --release for a clearer failure."
+      $cargo = Resolve-CommandPath 'cargo' @(
+        (Join-Path $env:USERPROFILE '.cargo\bin\cargo.exe')
+      )
+      if (-not $cargo) { throw "cargo not found for fallback build." }
+      Push-Location (Join-Path $root 'src-tauri')
+      try {
+        $env:RUST_BACKTRACE = 'full'
+        & $cargo build --release -v
+        $code3 = $LASTEXITCODE
+        if ($code3 -ne 0) { throw "cargo build failed, exit code: $code3" }
+      } finally { Pop-Location }
     }
   }
 
@@ -304,8 +400,14 @@ function Build-CustomNSIS {
   if (-not $exe) { throw "Could not find main exe in $appDir" }
   $exeName = $exe.Name
 
-  $nsisScript = Join-Path $root 'scripts/nsis/simpletshark.nsi'
-  if (!(Test-Path $nsisScript)) { throw "NSIS script not found: $nsisScript" }
+  $nsisScriptCandidates = @(
+    (Join-Path $root 'scripts/nsis/simpletshark.nsi'),
+    (Join-Path $root 'scripts/nsis/easytshark.nsi')
+  )
+  $nsisScript = $nsisScriptCandidates | Where-Object { Test-Path $_ } | Select-Object -First 1
+  if (-not $nsisScript) {
+    throw "NSIS script not found. Checked: $($nsisScriptCandidates -join ', ')"
+  }
 
   $outDir = Join-Path $bundleDir 'nsis'
   if (!(Test-Path $outDir)) { New-Item -ItemType Directory -Path $outDir | Out-Null }
@@ -338,13 +440,17 @@ function Build-Frontend {
   $root = Join-Path $PSScriptRoot '..'
   Push-Location $root
   try {
-    $npm = Get-Command npm -ErrorAction SilentlyContinue
-    if (-not $npm) {
+    $npmPath = Resolve-CommandPath 'npm' @(
+      (Join-Path $env:ProgramFiles 'nodejs\npm.cmd'),
+      (Join-Path ${env:ProgramFiles(x86)} 'nodejs\npm.cmd'),
+      (Join-Path $env:APPDATA 'npm\npm.cmd')
+    )
+    if (-not $npmPath) {
       throw "npm not found. Please install Node.js."
     }
 
     Write-Info "Running: npm run build"
-    & $npm.Source run build
+    & $npmPath run build
     $code = $LASTEXITCODE
     if ($code -ne 0) {
       throw "Frontend build failed, exit code: $code"
@@ -369,6 +475,7 @@ try {
   Write-Host "  Tauri Windows Build ($buildType)" -ForegroundColor Yellow
   Write-Host "======================================" -ForegroundColor Yellow
 
+  Import-VsDevEnvironment
   Build-Frontend
   Sync-Version
   Prepare-Resources
