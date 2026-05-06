@@ -14,6 +14,7 @@ import { calculateDuration } from '@/utils/tool';
 import { protocolColor } from '@/components/enum';
 import { apiPost } from '@/services/api';
 import { GlobalContext } from '@/context';
+import AIAnalysisPanel from './AIAnalysisPanel';
 const TabPane = Tabs.TabPane;
 const { Ellipsis } = Typography
 const FlowDetails = () => {
@@ -34,6 +35,7 @@ const FlowDetails = () => {
 
   const sessionId = params.get('sessionId') || windowParams.get('sessionId')
   const [record, setRecord] = useState(JSON.parse(localStorage.getItem(`row${sessionId}`)))
+  const currentSessionId = Number(record?.belongSessionId) || Number(record?.sessionId) || Number(sessionId)
 
   const handleResize = (e) => {
     const tableDom: any = document.querySelector('.arco-table-body')
@@ -370,6 +372,9 @@ const FlowDetails = () => {
             <div style={{ margin: '0 20px 20px 20px' }}>
               <DataStream sessionId={sessionId}/>
             </div>
+          </TabPane>
+          <TabPane key='3' title='AI分析'>
+            <AIAnalysisPanel sessionId={currentSessionId} record={record} />
           </TabPane>
         </Tabs>
         <Footer config={{ data: [{ title: '数据包总数', num: obj?.totalPackets || 0, unit: '个' }, { title: '总字节数', num: obj?.totalBytes || 0 }] }} />

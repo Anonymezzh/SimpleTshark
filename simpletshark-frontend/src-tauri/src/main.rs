@@ -2,6 +2,7 @@
 #![cfg_attr(target_os = "windows", windows_subsystem = "windows")]
 
 mod wireshark_detector;
+mod ai_analyzer;
 
 use serde::{Deserialize, Serialize};
 use std::path::PathBuf;
@@ -193,9 +194,8 @@ fn start_tshark_server(
     #[cfg(target_os = "windows")]
     {
         const CREATE_NO_WINDOW: u32 = 0x08000000;
-        const DETACHED_PROCESS: u32 = 0x00000008;
         use std::os::windows::process::CommandExt;
-        cmd.creation_flags(CREATE_NO_WINDOW | DETACHED_PROCESS);
+        cmd.creation_flags(CREATE_NO_WINDOW);
         log::info!("Set Windows process creation flags");
     }
 
@@ -621,6 +621,8 @@ fn main() {
                 log::warn!("Wireshark not detected, skipping TShark server startup");
             }
 
+            ai_analyzer::start_mcp_server();
+
             // Set dynamic window size based on screen resolution
             if let Some(window) = app.get_webview_window("main") {
                 // Get primary monitor
@@ -673,7 +675,10 @@ fn main() {
             show_save_dialog,
             open_devtools,
             check_wireshark,
-            start_tshark_server_command
+            start_tshark_server_command,
+            ai_analyzer::get_ai_runtime_info,
+            ai_analyzer::save_ai_settings,
+            ai_analyzer::analyze_session_with_ai
         ])
         .on_window_event(|window, event| {
             if let WindowEvent::CloseRequested { .. } = event {

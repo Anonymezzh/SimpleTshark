@@ -143,6 +143,22 @@ int main(int argc, char* argv[]) {
             std::string pathParam = argv[i];
             auto pos1 = pathParam.find(tsharkPathParamName) + tsharkPathParamName.size();
             tsharkPath = pathParam.substr(pos1);
+
+            // 兼容未正确加引号的路径参数，例如：
+            // --tshark_path=C:\Program Files\Wireshark
+            // 在 argv 中可能被拆成两个参数。
+            while (i + 1 < argc && strstr(argv[i + 1], "--") != argv[i + 1]) {
+                tsharkPath += " ";
+                tsharkPath += argv[++i];
+            }
+
+            if (!tsharkPath.empty() && tsharkPath.front() == '"') {
+                tsharkPath.erase(0, 1);
+            }
+            if (!tsharkPath.empty() && tsharkPath.back() == '"') {
+                tsharkPath.pop_back();
+            }
+
             LOG_F(INFO, "找到 TShark 路径参数: %s", tsharkPath.c_str());
             break;
         }
